@@ -4,6 +4,31 @@ var topics = ["dog" , "cat" , "chinchilla"]
 
 var searchLimit = 3;
 
+// Makes buttons
+var makeButtons = function() {
+  console.log(topics);
+  $('#buttons-display').append("This should appear and disappear too fast to see");
+  // Delete the contents of buttons-view before adding new buttons
+  $('#buttons-display').empty();
+  // Loop through the array, then generate buttons for each entry
+  for (var i = 0; i < topics.length; i++) {
+    var button = $('<input type="submit"/>');
+    button.attr("value" , topics[i]);
+    button.on('click' , getGifs);
+    $("#buttons-display").append(button);
+    console.log(button.attr('value'));
+  }
+}
+
+// Adds button
+var addButton = function(topic) {
+  console.log(topic);
+  topics.push(topic);
+  console.log(topics);
+  makeButtons();
+}
+ 
+// Gets gifs
 var getGifs = function() {
   var apiKey = "YVCQv8D9tDcc1PDdVMwyO5E7KhnTiTq8";
   var searchTerm = $(this).attr("value");
@@ -37,22 +62,6 @@ var makeGifs = function(reply) {
   }
 }
 
-// Makes buttons
-var makeButtons = function() {
-  console.log(topics);
-  $('#buttons-display').append("This should appear and disappear too fast to see");
-  // Delete the contents of buttons-view before adding new buttons
-  $('#buttons-display').empty();
-  // Loop through the array, then generate buttons for each entry
-  for (var i = 0; i < topics.length; i++) {
-    var button = $('<input type="submit"/>');
-    button.attr("value" , topics[i]);
-    button.on('click' , getGifs);
-    $("#buttons-display").append(button);
-    console.log(button.attr('value'));
-  }
-}
-
 // Toggles animation
 var movingToggle = function() {
     var still = $(this).attr('data-still');
@@ -66,10 +75,18 @@ var movingToggle = function() {
     $(this).attr("data-status" , "still");
   } else {
     console.log("whoops!");
+    return;
   }
 }
 
 $(document).ready(function() {
+
+  $('#add-new-topic').click(function (event) {
+    event.preventDefault();
+    var newTopic = $('#new-topic').val().trim();
+    addButton(newTopic);
+  });
+
   // initial call to make buttons
   makeButtons();
 })
