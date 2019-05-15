@@ -2,7 +2,7 @@ var topics = ["dog" , "cat" , "chinchilla"]
 
 
 
-var searchLimit = 3;
+var searchLimit = 10;
 
 // Makes buttons
 var makeButtons = function() {
@@ -13,6 +13,7 @@ var makeButtons = function() {
   // Loop through the array, then generate buttons for each entry
   for (var i = 0; i < topics.length; i++) {
     var button = $('<input type="submit"/>');
+    button.addClass('btn btn-outline-primary topic-button');
     button.attr("value" , topics[i]);
     button.on('click' , getGifs);
     $("#buttons-display").append(button);
@@ -48,9 +49,11 @@ var makeGifs = function(reply) {
   var results = reply.data;
   console.log(results);
   for (var i = 0; i < results.length; i++) {
+    var searchResult = $('<span>');
     var gif = $('<img>');
-    var stillImage = results[i].images.fixed_width_still.url;
-    var movingImage = results[i].images.fixed_width.url;
+    var gifRating = $('<p>');
+    var stillImage = results[i].images.fixed_width_small_still.url;
+    var movingImage = results[i].images.fixed_width_small.url;
     gif.attr('class' , 'clickable-gif');
     gif.attr('data-moving' , movingImage);
     gif.attr('data-still' , stillImage);
@@ -58,7 +61,10 @@ var makeGifs = function(reply) {
     gif.attr('data-status' , 'still');
     gif.attr('src' , stillImage);
     gif.on('click' , movingToggle);
-    $('#gif-display').prepend(gif);
+    gifRating.text(results[i].rating);
+    searchResult.append(gif , gifRating);
+    searchResult.addClass('search-result');
+    $('#gif-display').prepend(searchResult);
   }
 }
 

@@ -2,6 +2,15 @@ header {
   width: 100%;
 }
 
-.clickable-gif {
+/* .clickable-gif {
   padding: 3px;
+} */
+
+.search-result {
+  padding: 3px;
+  display: inline-block;
+}
+
+.topic-button {
+  margin: 3px;
 }
