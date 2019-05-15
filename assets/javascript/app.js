@@ -15,9 +15,26 @@ var getGifs = function() {
   $.ajax({
     url: queryURL,
     method: "GET",
-  }).then(function(response) {
-    console.log(response);
-  });
+  }).then(makeGifs);
+};
+
+// Makes gifs
+var makeGifs = function(reply) {
+  var results = reply.data;
+  console.log(results);
+  for (var i = 0; i < results.length; i++) {
+    var gif = $('<img>');
+    var stillImage = results[i].images.fixed_width_still.url;
+    var movingImage = results[i].images.fixed_width.url;
+    gif.attr('class' , 'clickable-gif');
+    gif.attr('data-moving' , movingImage);
+    gif.attr('data-still' , stillImage);
+    gif.attr('data-rating' , results[i].rating);
+    gif.attr('data-status' , 'still');
+    gif.attr('src' , stillImage);
+    gif.on('click' , movingToggle);
+    $('#gif-display').prepend(gif);
+  }
 }
 
 // Makes buttons
@@ -36,9 +53,23 @@ var makeButtons = function() {
   }
 }
 
+// Toggles animation
+var movingToggle = function() {
+    var still = $(this).attr('data-still');
+    var moving = $(this).attr('data-moving');
+    var status = $(this).attr('data-status');
+  if (status === "still") {
+    $(this).attr('src' , moving);
+    $(this).attr("data-status" , "moving");
+  } else if (status === "moving") {
+    $(this).attr('src' , still);
+    $(this).attr("data-status" , "still");
+  } else {
+    console.log("whoops!");
+  }
+}
 
-
-// initial call to make buttons
 $(document).ready(function() {
+  // initial call to make buttons
   makeButtons();
 })
