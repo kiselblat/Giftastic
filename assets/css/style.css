@@ -9,10 +9,6 @@ header {
   color: white;
 }
 
-/* .clickable-gif {
-  padding: 3px;
-} */
-
 .search-result {
   padding: 3px;
   display: inline-block;
@@ -20,4 +16,8 @@ header {
 
 .topic-button {
   margin: 3px;
+}
+
+#gif-display {
+  width: 100%
 }
