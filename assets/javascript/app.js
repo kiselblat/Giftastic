@@ -1,7 +1,4 @@
-var topics = ["dog" , "cat" , "chinchilla"]
-
-
-
+var topics = ["computer" , "artificial intelligence" , "internet" , "robot" , "mainframe" , "hacker" , "machine" , "calculations"];
 var searchLimit = 10;
 
 // Makes buttons
@@ -23,9 +20,8 @@ var makeButtons = function() {
 
 // Adds button
 var addButton = function(topic) {
-  console.log(topic);
   topics.push(topic);
-  console.log(topics);
+  console.log(topic , topics);
   makeButtons();
 }
  
@@ -49,21 +45,23 @@ var makeGifs = function(reply) {
   var results = reply.data;
   console.log(results);
   for (var i = 0; i < results.length; i++) {
+    // make divs to put search results in
     var searchResult = $('<span>');
     var gif = $('<img>');
     var gifRating = $('<p>');
-    var stillImage = results[i].images.fixed_width_small_still.url;
-    var movingImage = results[i].images.fixed_width_small.url;
+    // add attributes to the gif div
     gif.attr('class' , 'clickable-gif');
-    gif.attr('data-moving' , movingImage);
-    gif.attr('data-still' , stillImage);
-    gif.attr('data-rating' , results[i].rating);
+    gif.attr('data-moving' , results[i].images.fixed_height.url);
+    gif.attr('data-still' , results[i].images.fixed_height_still.url);
     gif.attr('data-status' , 'still');
-    gif.attr('src' , stillImage);
+    gif.attr('src' , results[i].images.fixed_height_still.url);
     gif.on('click' , movingToggle);
-    gifRating.text(results[i].rating);
+    // add rating to the gifRating div
+    gifRating.text("Rated: " + results[i].rating);
+    // add gif anf gifRating divs to the searchResult div...
     searchResult.append(gif , gifRating);
     searchResult.addClass('search-result');
+    // ...and add the search result to the site
     $('#gif-display').prepend(searchResult);
   }
 }
@@ -89,10 +87,8 @@ $(document).ready(function() {
 
   $('#add-new-topic').click(function (event) {
     event.preventDefault();
-    var newTopic = $('#new-topic').val().trim();
-    addButton(newTopic);
+    addButton($('#new-topic').val().trim());
   });
-
   // initial call to make buttons
   makeButtons();
 })
