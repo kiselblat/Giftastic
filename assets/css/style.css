@@ -1,9 +1,19 @@
+body {
+  background-color: #101010;
+  font-family: 'Share Tech Mono', monospace;
+}
+
 header {
   width: 100%;
 }
 
+p {
+  font-family: 'Share Tech Mono', monospace;
+}
+
 .jumbotron {
   background-image: url('../images/internet.jpg');
+  font-family: 'Press Start 2P', cursive;
   width: 100%;
   background-size: cover;
   color: white;
@@ -11,6 +21,7 @@ header {
 
 .search-result {
   padding: 3px;
+  margin: 3px;
   display: inline-block;
 }
 
@@ -18,6 +29,16 @@ header {
   margin: 3px;
 }
 
+#buttons-display {
+  padding: 5px 8px;
+}
+
 #gif-display {
-  width: 100%
+  width: 100%;
+}
+
+#new-topic-form {
+  margin: 10px;
+  width: 75%;
+  font-family: 'Share Tech Mono', monospace;
 }

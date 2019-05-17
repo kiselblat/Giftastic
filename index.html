@@ -13,7 +13,10 @@
   <!-- bootstrap -->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <script type="text/javascript" src="assets/javascript/bootstrap.js"></script>
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Share+Tech+Mono" rel="stylesheet">
   <!-- favicon -->
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
   <!-- custom -->
@@ -24,34 +27,36 @@
 <body class="d-flex flex-column h-100">
 
   <header>
-    <div class="jumbotron jumbotron-fluid text-md-center">     
+    <div class="jumbotron jumbotron-fluid text-md-center border-bottom border-success text-success">     
       <h1>#Giftastic!</h1> 
       <p class="lead">An amusement tool to pacify the humans! These moving images are amusing!</p> 
+      <form>
+        <span id="new-topic-form" class="input-group input-group-lg mx-auto">
+          <input id="new-topic" type="text" onfocus="this.value=''" value="Add New Topic" class="form-control bg-dark border-success text-success">
+          <span class="input-group-append">
+            <button id="add-new-topic" type="submit" class="btn btn-outline-success">
+              <i class="fa fa-plus"></i>
+            </button>
+          </span>
+        </span>
+      </form>
     </div>
   </header>
-
+  
   <main role="main" class="flex-shrink-0">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md">
-          <div id="buttons-display"><button>A button</button></div>  
-        </div>
-        <div class="col-md-2"></div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md">
+        <div id="buttons-display" class="rounded border border-success text-md-center"><button>A button</button></div>  
       </div>
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md">
-          <form>
-            <span id="new-topic-form" class="input-group">
-              <input id="new-topic" type="text" onfocus="this.value=''" value="Add New Topic" class="form-control">
-              <span class="input-group-append">
-                <input id="add-new-topic" value=" + " type="submit" class="btn btn-outline-primary">
-              </span>
-            </span>
-          </form>
-        </div>
-        <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md">
       </div>
+      <div class="col-md-2"></div>
+    </div>
       <div class="row">
         <div class="col-md">
           <div id="gif-display" class="text-center"></div>  
@@ -62,7 +67,7 @@
   <footer class="footer mt-auto py-3">
     <div class="row">
         <div class="col-md">
-            <a href="https://kiselblat.github.io">Back to Profile</a>>
+            <a href="https://kiselblat.github.io">Back to Profile</a>
         </div>
     </div>
   </footer>

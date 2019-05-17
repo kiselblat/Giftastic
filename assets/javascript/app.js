@@ -19,7 +19,7 @@ var displayButtons = function() {
 var makeButton = function(topic) {
   var button = $('<input type="submit"/>');
   button
-    .addClass('btn btn-outline-primary topic-button')
+    .addClass('btn btn-outline-success topic-button')
     .attr("value" , topic)
     .on('click' , getGifs);
   console.log(button.attr('value'));
@@ -35,6 +35,7 @@ var addButton = function(topic) {
 }
  
 // Searches GIPHY for gifs
+// Then calls displayGifs() implicitly passing the search results
 var getGifs = function() {
   var apiKey = "YVCQv8D9tDcc1PDdVMwyO5E7KhnTiTq8";
   var searchTerm = $(this).attr("value");
@@ -47,7 +48,7 @@ var getGifs = function() {
 };
 
 // Displays gifs on the site
-// Takes in a JSON object from GIPHY
+// Takes in the JSON object from GIPHY passed by getGifs()
 var displayGifs = function(reply) {
   var results = reply.data;
   console.log(results);
@@ -78,11 +79,13 @@ var makeResult = function(result) {
     })
     .click(movingToggle);
   // add rating to the gifRating div
-  gifRating.text("Rated: " + rating);
+  gifRating
+    .text("Rated: " + rating)
+    .addClass('text-success')
   // add gif and gifRating divs to the searchResult div
   searchResult
     .append(gif , gifRating)
-    .addClass('search-result');
+    .addClass('search-result rounded border border-success');
   // return the search result
   return searchResult;
 }
