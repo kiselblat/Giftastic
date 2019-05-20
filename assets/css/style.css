@@ -25,12 +25,17 @@ p {
   display: inline-block;
 }
 
+.gif-info {
+  margin: 3px
+}
+
 .topic-button {
   margin: 3px;
 }
 
 #buttons-display {
-  padding: 5px 8px;
+  padding: 5px;
+  margin: 5px;
 }
 
 #gif-display {

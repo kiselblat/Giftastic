@@ -64,11 +64,18 @@ var makeResult = function(result) {
   // grab info from the result
   var moving = result.images.fixed_height.url;
   var still = result.images.fixed_height_still.url;
+  var downloadLink = result.images.original.url;
   var rating = result.rating;
+  var title = result.title;
+
   // make divs to put info in and display
   var searchResult = $('<span/>');
   var gif = $('<img>');
-  var gifRating = $('<p/>');
+  var gifInfo = $('<div>');
+  var gifRating = $('<span/>');
+  var downloadButton = $('<a>');
+  var downIcon = $('<i/>');
+
   // add attributes and click handler to the gif div
   gif.addClass('clickable-gif')
     .attr({
@@ -78,14 +85,36 @@ var makeResult = function(result) {
       'src' : still
     })
     .click(movingToggle);
+
   // add rating to the gifRating div
   gifRating
     .text("Rated: " + rating)
-    .addClass('text-success')
-  // add gif and gifRating divs to the searchResult div
+    .addClass('text-success float-left')
+
+  // add url and icon to the downloadButton
+  downIcon
+    .addClass('fa fa-external-link-alt text-success float-right download-icon');
+  downloadButton
+    .addClass('download-button')
+    .attr({
+      'href' : downloadLink,
+      'target' : '_blank',
+      'download' : title,
+      'alt' : 'See on GIPHY (opens a new tab)',
+      'title' : 'See on GIPHY (opens a new tab)'
+    })
+    .append(downIcon);
+
+  // add gifRating and downloadButton divs to the gifInfo div
+  gifInfo
+    .addClass('gif-info')
+    .append(gifRating , downloadButton);
+
+  // add gif and gifInfo to the searchResult
   searchResult
-    .append(gif , gifRating)
+    .append(gif , gifInfo)
     .addClass('search-result rounded border border-success');
+    
   // return the search result
   return searchResult;
 }
